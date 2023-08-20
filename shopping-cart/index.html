@@ -1,220 +1,315 @@
 <!DOCTYPE html>
-<html lang="en">
+<html data-theme="light" lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DOM BASIC revision</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>Summer Sale</title>
+    <!-- tailwind and daisy ui cdn -->
     <link
-      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+      href="https://cdn.jsdelivr.net/npm/daisyui@3.5.1/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- font family  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+    <!-- font awesome -->
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
       crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-      crossorigin="anonymous"
-    ></script>
+    <style>
+      .font-work {
+        font-family: "Work Sans", sans-serif;
+      }
+    </style>
   </head>
-  <body>
-    <div class="container padding-bottom-3x mb-1">
-      <!-- Alert-->
-      <div
-        class="alert alert-info alert-dismissible fade show text-center"
-        style="margin-bottom: 30px"
+  <body class="font-work">
+    <header class="lg:px-20 px-5 bg-[#F9F6E2] lg:py-0 py-16">
+      <section
+        class="flex min-h-screen flex-col lg:flex-row justify-around items-center"
       >
-        <span class="alert-close" data-dismiss="alert"></span
-        ><img
-          class="d-inline align-center"
-          src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA1MTIuMDAzIDUxMi4wMDMiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMi4wMDMgNTEyLjAwMzsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNnB4IiBoZWlnaHQ9IjE2cHgiPgo8Zz4KCTxnPgoJCTxnPgoJCQk8cGF0aCBkPSJNMjU2LjAwMSw2NGMtNzAuNTkyLDAtMTI4LDU3LjQwOC0xMjgsMTI4czU3LjQwOCwxMjgsMTI4LDEyOHMxMjgtNTcuNDA4LDEyOC0xMjhTMzI2LjU5Myw2NCwyNTYuMDAxLDY0eiAgICAgIE0yNTYuMDAxLDI5OC42NjdjLTU4LjgxNiwwLTEwNi42NjctNDcuODUxLTEwNi42NjctMTA2LjY2N1MxOTcuMTg1LDg1LjMzMywyNTYuMDAxLDg1LjMzM1MzNjIuNjY4LDEzMy4xODQsMzYyLjY2OCwxOTIgICAgIFMzMTQuODE3LDI5OC42NjcsMjU2LjAwMSwyOTguNjY3eiIgZmlsbD0iIzUwYzZlOSIvPgoJCQk8cGF0aCBkPSJNMzg1LjY0NCwzMzMuMjA1YzM4LjIyOS0zNS4xMzYsNjIuMzU3LTg1LjMzMyw2Mi4zNTctMTQxLjIwNWMwLTEwNS44NTYtODYuMTIzLTE5Mi0xOTItMTkycy0xOTIsODYuMTQ0LTE5MiwxOTIgICAgIGMwLDU1Ljg1MSwyNC4xMjgsMTA2LjA2OSw2Mi4zMzYsMTQxLjE4NEw2NC42ODQsNDk3LjZjLTEuNTM2LDQuMTE3LTAuNDA1LDguNzI1LDIuODM3LDExLjY2OSAgICAgYzIuMDI3LDEuNzkyLDQuNTY1LDIuNzMxLDcuMTQ3LDIuNzMxYzEuNjIxLDAsMy4yNDMtMC4zNjMsNC43NzktMS4xMDlsNzkuNzg3LTM5Ljg5M2w1OC44NTksMzkuMjMyICAgICBjMi42ODgsMS43OTIsNi4xMDEsMi4yNCw5LjE5NSwxLjI4YzMuMDkzLTEuMDAzLDUuNTY4LTMuMzQ5LDYuNjk5LTYuNGwyMy4yOTYtNjIuMTQ0bDIwLjU4Nyw2MS43MzkgICAgIGMxLjA2NywzLjE1NywzLjU0MSw1LjYzMiw2LjY3Nyw2LjcyYzMuMTM2LDEuMDY3LDYuNTkyLDAuNjQsOS4zNjUtMS4yMTZsNTguODU5LTM5LjIzMmw3OS43ODcsMzkuODkzICAgICBjMS41MzYsMC43NjgsMy4xNTcsMS4xMzEsNC43NzksMS4xMzFjMi41ODEsMCw1LjEyLTAuOTM5LDcuMTI1LTIuNzUyYzMuMjY0LTIuOTIzLDQuMzczLTcuNTUyLDIuODM3LTExLjY2OUwzODUuNjQ0LDMzMy4yMDV6ICAgICAgTTI0Ni4wMTcsNDEyLjI2N2wtMjcuMjg1LDcyLjc0N2wtNTIuODIxLTM1LjJjLTMuMi0yLjExMi03LjMxNy0yLjM4OS0xMC42ODgtMC42NjFMOTQuMTg4LDQ3OS42OGw0OS41NzktMTMyLjIyNCAgICAgYzI2Ljg1OSwxOS40MzUsNTguNzk1LDMyLjIxMyw5My41NDcsMzUuNjA1TDI0Ni43LDQxMS4yQzI0Ni40ODcsNDExLjU2MywyNDYuMTY3LDQxMS44NCwyNDYuMDE3LDQxMi4yNjd6IE0yNTYuMDAxLDM2Mi42NjcgICAgIEMxNjEuOSwzNjIuNjY3LDg1LjMzNSwyODYuMTAxLDg1LjMzNSwxOTJTMTYxLjksMjEuMzMzLDI1Ni4wMDEsMjEuMzMzUzQyNi42NjgsOTcuODk5LDQyNi42NjgsMTkyICAgICBTMzUwLjEwMywzNjIuNjY3LDI1Ni4wMDEsMzYyLjY2N3ogTTM1Ni43NTksNDQ5LjEzMWMtMy40MTMtMS43MjgtNy41MDktMS40NzItMTAuNjg4LDAuNjYxbC01Mi4zNzMsMzQuOTIzbC0zMy42NDMtMTAwLjkyOCAgICAgYzQwLjM0MS0wLjg1Myw3Ny41ODktMTQuMTg3LDEwOC4xNi0zNi4zMzFsNDkuNTc5LDEzMi4yMDNMMzU2Ljc1OSw0NDkuMTMxeiIgZmlsbD0iIzUwYzZlOSIvPgoJCTwvZz4KCTwvZz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K"
-          width="18"
-          height="18"
-          alt="Medal icon"
-        />&nbsp;&nbsp;With this purchase you will earn
-        <strong>290</strong> Reward Points.
-      </div>
-      <!-- Shopping Cart-->
-      <div class="table-responsive shopping-cart">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Product Name</th>
-              <th class="text-center">Quantity</th>
-              <th class="text-center">Subtotal</th>
-              <th class="text-center">Discount</th>
-              <th class="text-center">
-                <a class="btn btn-sm btn-outline-danger" href="#">Clear Cart</a>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <div class="product-item">
-                  <a class="product-thumb" href="#"
-                    ><img
-                      src="https://www.bootdey.com/image/220x180/FF0000/000000"
-                      alt="Product"
-                  /></a>
-                  <div class="product-info">
-                    <h4 class="product-title"><a href="#">Unionbay Park</a></h4>
-                    <span><em>Size:</em> 10.5</span
-                    ><span><em>Color:</em> Dark Blue</span>
-                  </div>
-                </div>
-              </td>
-              <td class="text-center">
-                <div class="count-input">
-                  <select class="form-control">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                  </select>
-                </div>
-              </td>
-              <td class="text-center text-lg text-medium">$43.90</td>
-              <td class="text-center text-lg text-medium">$18.00</td>
-              <td class="text-center">
-                <a
-                  class="remove-from-cart"
-                  href="#"
-                  data-toggle="tooltip"
-                  title=""
-                  data-original-title="Remove item"
-                  ><i class="fa fa-trash"></i
-                ></a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="product-item">
-                  <a class="product-thumb" href="#"
-                    ><img
-                      src="https://www.bootdey.com/image/220x180/5F9EA0/000000"
-                      alt="Product"
-                  /></a>
-                  <div class="product-info">
-                    <h4 class="product-title">
-                      <a href="#">Daily Fabric Cap</a>
-                    </h4>
-                    <span><em>Size:</em> XL</span
-                    ><span><em>Color:</em> Black</span>
-                  </div>
-                </div>
-              </td>
-              <td class="text-center">
-                <div class="count-input">
-                  <select class="form-control">
-                    <option>1</option>
-                    <option selected="">2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                  </select>
-                </div>
-              </td>
-              <td class="text-center text-lg text-medium">$24.89</td>
-              <td class="text-center">—</td>
-              <td class="text-center">
-                <a
-                  class="remove-from-cart"
-                  href="#"
-                  data-toggle="tooltip"
-                  title=""
-                  data-original-title="Remove item"
-                  ><i class="fa fa-trash"></i
-                ></a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="product-item">
-                  <a class="product-thumb" href="#"
-                    ><img
-                      src="https://www.bootdey.com/image/220x180/9932CC/000000"
-                      alt="Product"
-                  /></a>
-                  <div class="product-info">
-                    <h4 class="product-title">
-                      <a href="#">Cole Haan Crossbody</a>
-                    </h4>
-                    <span><em>Size:</em> -</span
-                    ><span><em>Color:</em> Turquoise</span>
-                  </div>
-                </div>
-              </td>
-              <td class="text-center">
-                <div class="count-input">
-                  <select class="form-control">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                  </select>
-                </div>
-              </td>
-              <td class="text-center text-lg text-medium">$200.00</td>
-              <td class="text-center">—</td>
-              <td class="text-center">
-                <a
-                  class="remove-from-cart"
-                  href="#"
-                  data-toggle="tooltip"
-                  title=""
-                  data-original-title="Remove item"
-                  ><i class="fa fa-trash"></i
-                ></a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="shopping-cart-footer">
-        <div class="column">
-          <form class="coupon-form" method="post">
-            <input
-              class="form-control form-control-sm"
-              type="text"
-              placeholder="Coupon code"
-              required=""
-            />
-            <button class="btn btn-outline-primary btn-sm" type="submit">
-              Apply Coupon
-            </button>
-          </form>
-        </div>
-        <div class="column text-lg">
-          Subtotal: <span class="text-medium">$289.68</span>
-        </div>
-      </div>
-      <div class="shopping-cart-footer">
-        <div class="column">
-          <a class="btn btn-outline-secondary" href="#"
-            ><i class="icon-arrow-left"></i>&nbsp;Back to Shopping</a
+        <div class="lg:ml-16 lg:mr-8 md:mb-16 mb-10 lg:mb-0">
+          <h2 class="text-[#111] text-center text-xl font-semibold pb-9">
+            ---SALE FEVER---
+          </h2>
+          <p
+            class="text-[#111] text-center font-bold text-3xl md:text-5xl tracking-wide pb-1"
           >
+            Purchase TK 200 or
+          </p>
+          <p
+            class="text-[#111] font-bold text-center text-3xl md:text-5xl tracking-wide"
+          >
+            above & get <span class="text-[#E527B2]">20% off</span>
+          </p>
+          <div class="flex items-center gap-4 justify-center pt-10">
+            <h1 class="text-[#111] tex-center text-xl">Use Promo Code</h1>
+            <button
+              class="bg-[#E527B2] font-medium px-4 py-1 rounded-md text-lg text-white"
+            >
+              SELL200
+            </button>
+          </div>
         </div>
-        <div class="column">
-          <a
-            class="btn btn-primary"
-            href="#"
-            data-toast=""
-            data-toast-type="success"
-            data-toast-position="topRight"
-            data-toast-icon="icon-circle-check"
-            data-toast-title="Your cart"
-            data-toast-message="is updated successfully!"
-            >Update Cart</a
-          ><a class="btn btn-success" href="#">Checkout</a>
+        <div>
+          <img
+            class="md:w-[80%] mx-auto"
+            src="./images/Summer 1.png"
+            alt="summer"
+          />
         </div>
-      </div>
-    </div>
+      </section>
+    </header>
+    <main class="bg-[#F8F8F8] lg:px-24 px-8 pt-28">
+      <section class="flex flex-col-reverse lg:flex-row justify-center pb-20">
+        <div class="lg:pt-0 pt-20">
+          <h2 id="firstName" class="text-3xl text-black pb-10 font-semibold">
+            Kitchenware
+          </h2>
+          <!-- card container1 -->
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-10"
+          >
+            <!-- first card -->
+            <div
+              id="first-card"
+              class="card bg-base-100 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-500 shadow-xl px-4 pt-4 lg:w-72 cursor-pointer"
+            >
+              <div class="bg-gray-300 rounded-lg">
+                <img src="./images/prod1.png" alt="pord" class="mx-auto p-6" />
+              </div>
+              <div class="text-center pt-6">
+                <div class="rating rating-sm">
+                  <input type="radio" name="rating-5" class="mask mask-star-2 bg-orange-400" />
+                  <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked />
+                  <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                  <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                  <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                </div>
+                <h2 id="first-Name" class="text-xl font-semibold">
+                  K. Accessories
+                </h2>
+                <p class="text-md text-gray-500 pb-3">
+                  <span id="first-p">39.00 </span> TK
+                </p>
+              </div>
+            </div>
+            <!-- second card -->
+            <div
+              id="second-card"
+              class="card bg-base-100 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-500 shadow-xl px-4 pt-4 lg:w-72 cursor-pointer"
+            >
+              <div class="bg-gray-300 rounded-lg">
+                <img
+                  src="./images/prod2.png"
+                  alt="pord"
+                  class="lg:w-[74%] mx-auto p-6"
+                />
+              </div>
+              <div class="text-center pt-6">
+                <div class="rating rating-sm">
+                  <input type="radio" name="rating-5" class="mask mask-star-2 bg-orange-400" />
+                  <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked />
+                  <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                  <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                  <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                </div>
+                <h2 id="second-name" class="text-xl font-semibold">
+                  Knife & Cutting Board
+                </h2>
+                <p class="text-md text-gray-500 pb-3">
+                  <span id="second-p">25.00 </span> TK
+                </p>
+              </div>
+            </div>
+            <!-- third card -->
+            <div
+              id="third-card"
+              class="card bg-base-100 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-500 shadow-xl px-4 pt-4 lg:w-72 cursor-pointer"
+            >
+              <div class="bg-gray-300 rounded-lg">
+                <img src="./images/prod3.png" alt="pord" class="mx-auto p-6" />
+              </div>
+              <div class="text-center pt-6">
+                <div class="rating rating-sm">
+                  <input type="radio" name="rating-5" class="mask mask-star-2 bg-orange-400" />
+                  <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked />
+                  <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                  <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                  <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                </div>
+                <h2 id="third-name" class="text-xl font-semibold">
+                  Home Cooker
+                </h2>
+                <p class="text-md text-gray-500 pb-3">
+                  <span id="third-p">49.00 </span> TK
+                </p>
+              </div>
+            </div>
+          </div>
+          <h2 class="text-3xl text-black pb-10 font-semibold pt-20">
+            Sportswear
+          </h2>
+          <!-- card container2 -->
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-10"
+          >
+            <!-- four card -->
+            <div
+              id="four-card"
+              class="card bg-base-100 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-500 shadow-lg px-4 pt-4 lg:w-72 cursor-pointer"
+            >
+              <div class="bg-gray-300 rounded-lg">
+                <img
+                  src="./images/prod4.png"
+                  alt="pord"
+                  class="lg:w-[90%] mx-auto p-6"
+                />
+              </div>
+              <div class="text-center pt-6">
+                <div class="rating rating-sm">
+                  <input type="radio" name="rating-5" class="mask mask-star-2 bg-orange-400" />
+                  <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked />
+                  <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                  <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                  <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                </div>
+                <h2 id="four-name" class="text-xl font-semibold">
+                  Sports Back Cap
+                </h2>
+                <p class="text-md text-gray-500 pb-3">
+                  <span id="four-p">49.00 </span> TK
+                </p>
+              </div>
+            </div>
+            <!-- five card -->
+            <div
+              id="five-card"
+              class="card bg-base-100 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-500 shadow-xl px-4 pt-4 lg:w-72 cursor-pointer"
+            >
+              <div class="bg-gray-300 rounded-lg">
+                <img src="./images/prod5.png" alt="pord" class="mx-auto p-6" />
+              </div>
+              <div class="text-center pt-6">
+                <div class="rating rating-sm">
+                  <input type="radio" name="rating-5" class="mask mask-star-2 bg-orange-400" />
+                  <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked />
+                  <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                  <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                  <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                </div>
+                <h2 id="five-name" class="text-xl font-semibold">
+                  Full Jersey Set
+                </h2>
+                <p class="text-md text-gray-500 pb-3">
+                  <span id="five-p">25.00 </span> TK
+                </p>
+              </div>
+            </div>
+            <!-- six card -->
+            <div
+              id="six-card"
+              class="card bg-base-100 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-500 shadow-xl px-4 pt-4 lg:w-72 cursor-pointer"
+            >
+              <div class="bg-gray-300 rounded-lg">
+                <img
+                  src="./images/prod6.png"
+                  alt="pord"
+                  class="lg:w-[75%] mx-auto p-6"
+                />
+              </div>
+              <div class="text-center pt-6">
+                <div class="rating rating-sm">
+                  <input type="radio" name="rating-5" class="mask mask-star-2 bg-orange-400" />
+                  <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked />
+                  <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                  <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                  <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                </div>
+                <h2 id="six-name" class="text-xl font-semibold">
+                  Flexible Sofa
+                </h2>
+                <p class="text-md text-gray-500 pb-3">
+                  <span id="six-p">49.00 </span> TK
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="mt-[76px] lg:pr-20 lg:ml-10 flex lg:justify-normal flex-col md:flex-row lg:flex-col gap-10"
+        >
+          <div class="py-6 px-5 bg-[#FFF] rounded-xl lg:flex-none flex-1">
+            <h2 class="font-semibold text-xl pb-2">Have coupon?</h2>
+            <div class="">
+              <input
+                class="rounded-tl-md rounded-bl-md inline-block w-[70%] px-3 py-2 border border-gray-300"
+                id="coupone"
+                type="text"
+                placeholder="Coupon code"
+              />
+              <button
+                class="relative rounded-tr-md rounded-br-md inline-block -left-[40px] px-4 py-2 border border-[#E527B2] bg-[#E527B2] text-md text-white"
+                id="coupon-btn"
+                disabled
+              >
+                Apply
+              </button>
+            </div>
+          </div>
+          <div class="bg-[#FFF] py-4 px-5 rounded-xl lg:flex-none flex-1">
+            <ul class="list-container"></ul>
+            <div class="border border-b-gray-200 mt-2 mb-4"></div>
+            <p class="pb-2 text-lg">
+              <span class="font-bold">Total Price : </span>
+              <span id="total-price" class="text-gray-400">0.00</span
+              ><span class="text-gray-400">TK</span>
+            </p>
+            <p class="pb-2 text-lg">
+              <span class="font-bold">Discount : </span>
+              <span id="discount-price" class="text-gray-400">0.00</span
+              ><span class="text-gray-400">TK</span>
+            </p>
+            <p class="pb-2 text-lg">
+              <span class="font-bold">Total : </span>
+              <span id="after-total-price" class="text-gray-400">0.00</span
+              ><span class="text-gray-400">TK</span>
+            </p>
+            <div class="border border-b-gray-200 mt-3 mb-6"></div>
+            <!-- Open the modal using ID.showModal() method -->
+            <button id="make-purchase" class="lg:w-[18.4%] mt-5 mx-auto lg:absolute rounded-lg font-medium px-4 py-2 hover:bg-[#e055bb] bg-[#E527B2] text-md text-white" onclick="my_modal_1.showModal() " disabled>
+              Make Purchase
+            </button>
+            <dialog id="my_modal_1" class="modal lg:w-[430px] mx-auto">
+              <form method="dialog" class="modal-box text-center">
+                <img class=" w-36 mx-auto" src="./images/congo.png" alt="">
+                <p class="py-4 text-3xl font-bold ">
+                  Congratulations
+                </p>
+                <p class="pt-2 text-gray-400">
+                  Your Purchase the product
+                </p>
+                <div id="modal-btn" class="modal-action flex justify-center pb-3 pt-2">
+                  <!-- if there is a button in form, it will close the modal -->
+                  <button  class="px-4 py-2 hover:bg-[#e055bb] bg-[#E527B2] text-md text-white rounded-lg text-md">Go Home</button>
+                </div>
+              </form>
+            </dialog>
+            <button  class="" disabled></button>
+          </div>
+          
+        </div>
+      </section>
+    </main>
+    <script src="script.js"></script>
   </body>
 </html>
